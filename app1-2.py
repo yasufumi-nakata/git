@@ -1,0 +1,26 @@
+import tkinter as tk
+import tkinter.filedialog as fd 
+import PIL.Image
+import PIL.ImageTk
+
+def dispPhoto(path):
+    #import photo
+    newImage = PIL.Image.open(path).resize((300,300))
+    #print image
+    imageData = PIL.imageTk.PhotoImage(newImage)
+    imageLabel.configure(image = imageData)
+    imageLabel.image = imageData
+
+def openFile():
+    fpath = fd.askopenfilename()
+    if fpath:
+        dispPhoto(fpath)
+
+root = tk.Tk()
+root.geometry("400x500")
+
+btn = tk.Button(text="ファイルを開く")
+imageLabel = tk.Label()
+btn.pack()
+imageLabel.pack()
+tk.mainloop()
